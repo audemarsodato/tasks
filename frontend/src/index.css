@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playpen+Sans:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Sriracha&display=swap');
+
+:root {
+        --red: #FFB7B7;
+        --deep-red: #df2d2d;
+        --green: #9BE9B9;
+        --purple: #E1DDFF;
+        --blue: #D1EDFF;
+        --gray: #BDBDBD; 
+        --white: rgba(250, 250, 250, 0.8);
+        --text-color: #2B2B2B;
+        --bg: rgba(179, 179, 179, 0.8);
+
+        --transition-s: 0.3s;
+}
+
+* {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+
+        font-family: "Inter", sans-serif;
+}
+
+body {
+        height: 100vh;
+        background-color: var(--bg);
+}
+
+.app {
+        margin: auto;
+        max-width: 1000px;
+        height: 100vh;
+        
+        display: grid;
+        grid-template-rows: 1fr auto;
+}
+
+.quadrants {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        position: relative;
+        min-height: 0;
+}
+
+.quadrant {
+        /* Layout */
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-height: 0;
+        
+        /* Styles */
+        border-radius: 20px;
+}
+
+.quadrant-label {
+        /* Layout */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        
+        /* Styles */
+        color: white;
+        opacity: 0.25;
+        font-weight: bold;
+        white-space: nowrap;
+        font-size: 3rem;
+        letter-spacing: 4.8px;
+        text-align: center;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+}
+
+form input {
+        width: 100%;
+        margin: 0.8rem 0 1.5rem 0;
+        padding: 1rem 1.5rem;
+        
+        /* Styles */
+        border-radius: 20px;
+        background-color: var(--white);
+        border: none;
+        color: var(--text-color);
+        font-size: 1rem;
+        font-weight: bold;
+        outline: none;
+}
+
+form input::placeholder {
+        /* Styles */
+        text-decoration: underline;
+        color: var(--text-color);
+        opacity: 0.6;
+        font-weight: bold;
+        font-size: 16px;
+}
+
+.q1 {
+        background-color: var(--red);
+}
+
+.q2 {
+        background-color: var(--green);
+}
+
+.q3 {
+        background-color: var(--purple);
+        backdrop-filter: brightness(0.5);
+}
+
+.q4 {
+        background-color: var(--blue);
+}
+
+.empty-prompt {
+        position: absolute;
+        top: 96%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        text-decoration: underline;
+        text-align: center;
+        color: var(--text-color);
+        opacity: 0.7;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+}
+
+.empty-quadrant-label {
+        /* Layout */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        
+        /* Styles */
+        color: white;
+        opacity: 0.7;
+        font-weight: bold;
+        white-space: nowrap;
+        font-size: 2.5rem;
+        text-align: center;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+}
+
+.empty-quadrant-label span {
+        font-weight: 400;
+}
+
+.task-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7rem 1rem;
+        margin-bottom: 12px;
+        
+        border-radius: 2rem;
+        background-color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--text-color);
+        cursor:grab; 
+        transition: scale 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.task-card .task-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+        max-height: 1.5rem;
+
+        transition: max-height 0.8s ease;
+}
+
+.task-card:hover .task-text {
+        white-space: normal;
+        max-height: 100px;
+}
+
+
+.top-task {
+        border-left: 2px solid var(--gray);
+}
+
+.lower-tasks {
+        opacity: 0.4;
+        background-color: rgba(255, 255, 255, 1);
+}
+
+.task-card .actions .button {
+        margin: 0 0.5rem;
+        
+        opacity: 0.5;
+        cursor: pointer;
+}
+
+.task-card .actions .button:hover {
+        opacity: 1;
+}
+
+.toast {
+        position: fixed;
+        bottom: 90px;
+        left: 50%;
+        font-size: 1rem;
+        padding: 1em 1.5em 1em 0.5em;
+        
+        opacity: 0;
+        background-color: var(--text-color);
+        color: var(--white);
+        border-left: 10px solid var(--deep-red);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        font-weight: 600;
+        
+        transform: translate(-50%, 40px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        pointer-events: none;
+}
+
+.toast.show {
+        transform: translate(-50%, 0);
+        opacity: 1;
+}
+
+/* Utility classes */
+.display-none {
+        display: none;
+}
+
+.hidden {
+        opacity: 0;
+}
+
+.scrollable {
+        box-sizing: border-box;
+        height: 100%;
+        overflow-y: auto;
+        padding: 1.5rem 1rem;
+}
+
+.fixed {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+.grabbing {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 1);
+        border-left: none;
+        scale: 1.05;
+        box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.hovered {
+        /* border: 2px dashed var(--text-color); */
+        /* box-shadow: 0px 14px 28px 0px rgba(0,0,0,0.1); */
+        /* filter: brightness(1.07); */
+        filter: brightness(0.85);
+        transition: box-shadow 0.3s ease, filter 0.3s ease;
+}
