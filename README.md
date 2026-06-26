@@ -6,7 +6,7 @@ A full-stack task management application that organizes tasks using the **Eisenh
 [▶ https://tasks-today-time-management.netlify.app/](https://tasks-today-time-management.netlify.app/)
 
 ## Demo Video
-[▶ Watch the demo](./assets/demo.mp4)
+[▶ Watch the demo](https://youtu.be/T3retC5oUMo)
 
 ## Screenshots
 ![Quadrants](./assets/screen2.png)
