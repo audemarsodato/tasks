@@ -6,6 +6,7 @@ export default function DeleteModal({ taskToDelete, closeModal }) {
         const { user_id } = userUserContext()
         
         async function deleteTask() {
+                closeModal()
                 dispatch({type: 'DELETE', payload: taskToDelete})
                 try {
                         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${taskToDelete._id}`, {
@@ -18,7 +19,6 @@ export default function DeleteModal({ taskToDelete, closeModal }) {
                 catch (error) {
                         console.log(error)
                 }
-                closeModal()
         }
         
         return (
