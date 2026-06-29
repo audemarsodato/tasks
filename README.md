@@ -4,7 +4,7 @@
 A full-stack task management application built around the **Eisenhower Matrix**. Organize tasks by urgency and importance, move them seamlessly with drag-and-drop, and keep everything synchronized with a MongoDB database.
 
 ## Live Demo
-[▶ https://tasks-today-time-management.netlify.app/](https://tasks-today-time-management.netlify.app/)
+[▶ https://eisenplan.netlify.app](https://eisenplan.netlify.app)
 
 ## Demo Video
 [▶ Watch the demo](https://youtu.be/T3retC5oUMo)
