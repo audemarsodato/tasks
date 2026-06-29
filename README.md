@@ -1,6 +1,7 @@
-# Task management app
+# EisenPlan
+*An Eisenhower Matrix task manager that helps you prioritize what matters.*
 
-A full-stack task management application that organizes tasks using the **Eisenhower Matrix**, helping users prioritize work based on urgency and importance. Tasks can be created, organized through drag-and-drop, and stored in a MongoDB database.
+A full-stack task management application built around the **Eisenhower Matrix**. Organize tasks by urgency and importance, move them seamlessly with drag-and-drop, and keep everything synchronized with a MongoDB database.
 
 ## Live Demo
 [▶ https://tasks-today-time-management.netlify.app/](https://tasks-today-time-management.netlify.app/)

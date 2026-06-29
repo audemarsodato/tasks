@@ -50,6 +50,9 @@ export default function Form() {
                 }
         }
 
+        {/*
+                Make the placeholder change after unfocused
+        */}
         let tasksSamples = [
                 'Finish drafting Chapter 1 by 9:00 AM Monday',
                 'Submit internship application before Friday',
