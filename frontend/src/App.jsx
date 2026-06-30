@@ -15,6 +15,7 @@ import DeleteModal from './components/DeleteModal'
 export default function App() {
         const { dispatch } = useTasksContext()
         const { user_id, dispatch: userDispatch } = userUserContext()
+        const [ isLoading, setIsLoading ] = useState(true)
 
         useEffect(() => {
                 const initUser = async () => {
@@ -47,12 +48,15 @@ export default function App() {
                 catch(error) {
                         console.log(error)
                 }
+                finally {
+                        setIsLoading(false)
+                }
         }
 
         return (
                 <div className='app'>
-                        <Quadrants onDelete={setTaskToDelete} />
-                        <Form />
+                        <Quadrants onDelete={setTaskToDelete} isLoading={isLoading}/>
+                        <Form isLoading={isLoading}/>
                         {taskToDelete &&
                                 <DeleteModal taskToDelete={taskToDelete} closeModal={() => setTaskToDelete(null)}/>
                         }

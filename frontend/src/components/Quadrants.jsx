@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import { DragDropProvider, useDroppable } from '@dnd-kit/react'
 import TaskCard from  './TaskCard'
 import Quadrant from './Quadrant'
+import TaskSkeleton from './TaskSkeleton'
 import useTasksContext from '../hooks/useTasksContext'
 import useToastContext from '../hooks/useToastContext'
 
 import { isFull } from '../utilities'
 import userUserContext from '../hooks/useUserContext'
 
-export default function Quadrants({ onDelete }) {
+export default function Quadrants({ onDelete, isLoading }) {
         const { tasks, dispatch } = useTasksContext()
         const { user_id } = userUserContext()
         const { showToast } = useToastContext()
@@ -24,6 +25,10 @@ export default function Quadrants({ onDelete }) {
                 tasks.filter(task => task.quadrant === quadrantId && task.status === 'pending')
                 .sort((taskA, taskB) => taskA.createdAt - taskB.createdAt)
                 .map((task, index) => <TaskCard onDelete={onDelete} key={task._id} task={task} isTopTask={index === 0}/>)
+
+        const displaySkeleton = () => Array.from({length: 3}).map(() => <TaskSkeleton />)
+
+        const populateQuadrant = (quadrantId) => isLoading ? displaySkeleton() : displayTasks(quadrantId)
         
         async function moveTask(taskId, targetQuadrant) {
                 const task = tasks.find(task => task._id === taskId)
@@ -88,7 +93,7 @@ export default function Quadrants({ onDelete }) {
                                                 </span>
                                         </p>
                                         <div className="scrollable">
-                                                {displayTasks(1)}
+                                                {populateQuadrant(1)}
                                         </div>
                                 </Quadrant>
 
@@ -102,7 +107,7 @@ export default function Quadrants({ onDelete }) {
                                                 </span>
                                         </p>
                                         <div className="scrollable">
-                                                {displayTasks(2)}
+                                                {populateQuadrant(2)}
                                         </div>
                                 </Quadrant>
 
@@ -116,7 +121,7 @@ export default function Quadrants({ onDelete }) {
                                                 </span>
                                         </p>
                                         <div className="scrollable">
-                                                {displayTasks(3)}
+                                                {populateQuadrant(3)}
                                         </div>
                                 </Quadrant>
 
@@ -130,7 +135,7 @@ export default function Quadrants({ onDelete }) {
                                                 </span>
                                         </p>
                                         <div className="scrollable">
-                                                {displayTasks(4)}
+                                                {populateQuadrant(4)}
                                         </div>
                                 </Quadrant>
 

@@ -4,7 +4,7 @@ import useToastContext from "../hooks/useToastContext"
 import userUserContext from '../hooks/useUserContext'
 import { isFull } from '../utilities'
 
-export default function Form() {
+export default function Form({ isLoading }) {
         const [ taskInput, setTaskInput ] = useState(null)
         const { tasks, dispatch } = useTasksContext()
         const { showToast } = useToastContext()
@@ -73,7 +73,7 @@ export default function Form() {
 
         return (
                 <form onSubmit={handleSubmit}>
-                        <input type='text' placeholder={placeholder} value={taskInput} onChange={event => setTaskInput(event.target.value)}/>
+                        <input type='text' placeholder={isLoading ? 'Loading tasks...' : placeholder} disabled={isLoading} value={taskInput} onChange={event => setTaskInput(event.target.value)}/>
                         {/* 
                         <p>Write clear, actionable tasks. Start with a verb and include a deadline when possible.</p>
                                 Structure of an actionable task is:

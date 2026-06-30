@@ -6,10 +6,6 @@
   - undefined
   - NaN
 
-hash bcrypt the uuid
-
-If wala pang uuid sa localstorage
-        kuha sa backend
-        save sa localstorage
-Pag meron na
-        gamitin na yun sa mga api
+You can improve the display task function by seperating the task filter
+Get each quadrants task and pass them to the function to be displayed
+Faster display time since it does not search before displaying them
