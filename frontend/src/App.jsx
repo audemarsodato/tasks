@@ -11,7 +11,6 @@ import DeleteModal from './components/DeleteModal'
 //      add animation transition when marking tasks done or deleting tasks
 //      q3 and q4 colors may be too bright
 //      TRY making drop animation consistent
-//      App name? Today? Morning planner?
 export default function App() {
         const { dispatch } = useTasksContext()
         const { user_id, dispatch: userDispatch } = userUserContext()

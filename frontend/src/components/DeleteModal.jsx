@@ -7,6 +7,12 @@ export default function DeleteModal({ taskToDelete, closeModal }) {
         const { user_id } = userUserContext()
         const [ isLoading, setIsLoading ] = useState(false)
         
+        /* 
+                Use rollback when using the optimistic updates.
+                Its where you delete the task locally first for faster ux.
+                If it fails to fetch delete then just add the tasktodelete back, the rollback.
+                Then use toast with message: Failed to delete task
+         */
         async function deleteTask() {
                 setIsLoading(true)
                 try {

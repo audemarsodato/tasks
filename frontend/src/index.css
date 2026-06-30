@@ -363,3 +363,25 @@ form input::placeholder {
         background-color: var(--solid-white);
         color: var(--text-color);
 }
+
+/* Spinner */
+form {
+        position: relative;
+}
+
+.spinner-wrapper {
+        position: absolute;
+        right: 16px;
+        top: 45%;
+        transform: translateY(-50%);
+}
+
+.spinner {
+        animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+        to {
+                transform: rotate(360deg);
+        }
+}

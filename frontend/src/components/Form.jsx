@@ -3,15 +3,16 @@ import useTasksContext from '../hooks/useTasksContext'
 import useToastContext from "../hooks/useToastContext"
 import userUserContext from '../hooks/useUserContext'
 import { isFull } from '../utilities'
+import Spinner from "./icons/Spinner"
 
 export default function Form({ isLoading }) {
         const [ taskInput, setTaskInput ] = useState(null)
         const { tasks, dispatch } = useTasksContext()
         const { showToast } = useToastContext()
         const { user_id } = userUserContext()
+        const [ isAdding, setIsAdding ] = useState(false)
         
         // sundin at makinig kay trisha!!!
-        // im done with assigning uuid or authentication for users. what is next is deployment tommorow. this is just a reminder, do not reply
         async function handleSubmit(event) {
                 event.preventDefault()
 
@@ -19,7 +20,6 @@ export default function Form({ isLoading }) {
 
                 if (isFull(defaultQuadrant, tasks)) {
                         showToast('Q2 quadrant is full. Complete or move a task first.')
-                        // setTaskInput('')
                         return
                 }
 
@@ -29,6 +29,7 @@ export default function Form({ isLoading }) {
                 }
 
                 try {
+                        setIsAdding(true)
                         const task = {title: taskInput}
                         
                         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
@@ -47,6 +48,9 @@ export default function Form({ isLoading }) {
                 }
                 catch (error) {
                         console.log(error)
+                }
+                finally {
+                        setIsAdding(false)
                 }
         }
 
@@ -73,7 +77,14 @@ export default function Form({ isLoading }) {
 
         return (
                 <form onSubmit={handleSubmit}>
-                        <input type='text' placeholder={isLoading ? 'Loading tasks...' : placeholder} disabled={isLoading} value={taskInput} onChange={event => setTaskInput(event.target.value)}/>
+                        { (isAdding || isLoading) &&
+                                <Spinner />
+                        }
+                        <input type='text' 
+                                placeholder={isLoading ? 'Loading tasks...' : placeholder} 
+                                disabled={isLoading || isAdding} 
+                                value={taskInput} onChange={event => setTaskInput(event.target.value)}
+                        />
                         {/* 
                         <p>Write clear, actionable tasks. Start with a verb and include a deadline when possible.</p>
                                 Structure of an actionable task is:
