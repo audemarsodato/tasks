@@ -16,9 +16,9 @@ export default function Quadrants({ onDelete, isLoading }) {
         const [ hover, setHovered ] = useState(0)
         
         let pendingTask = tasks.filter(task => task.status === 'pending')
-        const [ isEmpty, setIsEmpty ] = useState(!isLoading && pendingTask.length === 0) // "The quadrant is empty if loading is finished and there are zero tasks."
+        let isEmpty = !isLoading && pendingTask.length === 0 // "The quadrant is empty if loading is finished and there are zero tasks."
         useEffect(() => {
-                setIsEmpty(pendingTask.length === 0)
+                isEmpty = !isLoading && pendingTask.length === 0
         }, [tasks])
         
         const displayTasks = (quadrantId) => tasks && 
