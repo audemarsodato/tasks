@@ -110,7 +110,6 @@ form input::placeholder {
 
 .q3 {
         background-color: var(--purple);
-        backdrop-filter: brightness(0.5);
 }
 
 .q4 {
