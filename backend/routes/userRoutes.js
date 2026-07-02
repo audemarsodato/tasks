@@ -7,6 +7,8 @@ router.get('/uuid', generateUUID)
 router.post('/signup', signupUser)
 router.post('/login', loginUser)
 
+// Update account, change username, email, password
+
 // danger zone
 router.delete('/delete/:id', deleteUser)
 
