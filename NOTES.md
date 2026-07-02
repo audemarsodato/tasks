@@ -174,3 +174,6 @@ chore/<task>
 ```
 
 It's simple, widely recognized, and scales well as your projects become larger and more collaborative.
+
+### HTTP status codes
+- 400 - bad request, can be used in missing inputs
