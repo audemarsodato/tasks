@@ -34,6 +34,9 @@ export default function DeleteModal({ taskToDelete, closeModal }) {
                 }
         }
         
+        /* 
+                Disable the close modal in cancel and modal window when deleting or isloading to prevent interuptions
+        */
         return (
                 <section onClick={closeModal} className='delete-modal-window'>
                         <section onClick={event => event.stopPropagation()} className="delete-modal-body">
